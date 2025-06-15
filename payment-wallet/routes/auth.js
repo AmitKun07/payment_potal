@@ -4,17 +4,17 @@ const User = require("../models/User");
 
 const router = express.Router();
 
-// Sign-Up Route
+// Sign-Up Route hai
 router.post("/signup", async (req, res) => {
     const { name, email, password } = req.body;
 
-    // Input Validation
+    // Input Validation hai...
     if (!name || !email || !password) {
         return res.status(400).json({ message: "All fields are required" });
     }
 
     try {
-        // Check if user already exists
+        // Check if user already exists hai...
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ message: "User already exists" });
