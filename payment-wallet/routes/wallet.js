@@ -65,7 +65,7 @@ router.post("/deduct-funds", async (req, res) => {
     const { userId, amount } = req.body;
 
     try {
-        // Validate input
+        // Validate input.....
         if (!mongoose.Types.ObjectId.isValid(userId)) {
             return res.status(400).json({ message: "Invalid User ID" });
         }
@@ -73,18 +73,18 @@ router.post("/deduct-funds", async (req, res) => {
             return res.status(400).json({ message: "Invalid amount" });
         }
 
-        // Find user
+        // Find user......
         const user = await User.findById(userId);
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }
 
-        // Check for sufficient balance
+        // Check for sufficient balance......
         if (user.balance < amount) {
             return res.status(400).json({ message: "Insufficient balance" });
         }
 
-        // Deduct funds
+        // Deduct funds......
         user.balance -= amount;
         await user.save();
 
